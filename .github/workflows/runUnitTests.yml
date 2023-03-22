@@ -1,0 +1,14 @@
+name: runUnitTests
+run-name: Run unit tests by @${{ github.actor }}
+
+on: [pull_request]
+
+jobs:
+  run_tests:
+    runs-on: macos-latest
+
+    name: Run unit tests
+    steps:
+    - uses: actions/checkout@v3
+    - name: Testing iOS app
+      run: xcodebuild clean test -scheme actions -project actions/actions.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14' | xcpretty && exit ${PIPESTATUS[0]}
