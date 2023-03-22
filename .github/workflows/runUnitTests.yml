@@ -10,7 +10,7 @@ jobs:
     name: Run unit tests
     steps:
     - uses: actions/checkout@v3
-    - name: SomeStep
+    - name: Setup github token
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
