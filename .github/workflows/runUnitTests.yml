@@ -10,5 +10,9 @@ jobs:
     name: Run unit tests
     steps:
     - uses: actions/checkout@v3
+    - name: SomeStep
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      run: git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
     - name: Testing iOS app
       run: xcodebuild clean test -scheme actions -project actions/actions.xcodeproj -destination 'platform=iOS Simulator,name=iPhone 14' | xcpretty && exit ${PIPESTATUS[0]}
